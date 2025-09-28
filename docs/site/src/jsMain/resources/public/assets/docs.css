@@ -71,6 +71,11 @@
         padding-left: 0;
     }
 }
+
+nav details.dropdown, nav li [role="button"] {
+    display: inline-block;
+    margin: calc(var(--pico-nav-element-spacing-vertical) * -1) 0;
+}
 /* END PICO CSS ENHANCEMENTS */
 
 
