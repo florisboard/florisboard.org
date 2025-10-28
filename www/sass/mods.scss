@@ -1,6 +1,10 @@
 @use "../themes/duckquill/sass/mods/modern-headings";
 @use "../themes/duckquill/sass/mods/classic-nav";
 
+body:has(table) {
+    display: block;
+}
+
 :root {
   --container-width: 1080px; // Override the container width
   --hover: scale(1.01);
