@@ -64,7 +64,7 @@ insert_anchor_links = "left"
 </p>
 </td>
 </tr>
-</tbod>
+</tbody>
 </table>
 
 ## APK signing certificate hashes
