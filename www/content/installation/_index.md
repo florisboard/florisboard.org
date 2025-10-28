@@ -4,6 +4,7 @@ insert_anchor_links = "left"
 +++
 
 <table>
+<thead>
 <tr>
 <th align="center" width="50%">
 <h3> {{ rezize_picture(path="/app-icon.png", width=48, height=48, op="fit_width") }} Stable <a href="https://github.com/florisboard/florisboard/releases/latest"><img alt="Latest stable release" src="https://img.shields.io/github/v/release/florisboard/florisboard?sort=semver&display_name=tag&color=28a745"></a></h3>
@@ -12,6 +13,8 @@ insert_anchor_links = "left"
 <h3> {{ rezize_picture(path="/app-icon-beta.png", width=48, height=48, op="fit_width") }} Preview <a href="https://github.com/florisboard/florisboard/releases"><img alt="Latest preview release" src="https://img.shields.io/github/v/release/florisboard/florisboard?include_prereleases&sort=semver&display_name=tag&color=fd7e14"></a></h3>
 </th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td valign="top">
 <p><i>Major versions only</i><br><br>Updates are more polished, new features are matured and tested through to ensure a stable experience.</p>
@@ -61,6 +64,7 @@ insert_anchor_links = "left"
 </p>
 </td>
 </tr>
+</tbod>
 </table>
 
 ## APK signing certificate hashes
