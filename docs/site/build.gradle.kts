@@ -97,7 +97,7 @@ kobweb {
                 fun nestedLiteral(node: Node): String = when (node) {
                     is Text -> node.literal
                     is Code -> node.literal
-                    else -> node.children().joinToString { nestedLiteral(it) }
+                    else -> node.children().joinToString("") { nestedLiteral(it) }
                 }
                 val text = nestedLiteral(heading)
                 heading.appendChild(KobwebCall(".components.widgets.HeadingAnchorLink(\"$anchor\")"))
