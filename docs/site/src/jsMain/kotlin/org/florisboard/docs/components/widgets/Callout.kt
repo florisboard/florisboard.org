@@ -1,9 +1,8 @@
 package org.florisboard.docs.components.widgets
 
-
 import androidx.compose.runtime.Composable
+import org.jetbrains.compose.web.dom.B
 import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.H4
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
 
@@ -49,12 +48,10 @@ fun Callout(type: CalloutType, header: String? = null, content: @Composable () -
             classes("callout", "callout-${type.toString().lowercase()}")
         }
     ) {
-        H4 {
+        B {
             BootstrapIcon(type.getIconName())
             Text(" " + (header ?: type.getLabel()))
         }
-        P {
-            content()
-        }
+        content()
     }
 }

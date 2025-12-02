@@ -1,70 +1,70 @@
 /*  Callouts inspired by https://codepen.io/superjaberwocky/pen/rLKxOa */
 .callout {
-    padding: 20px;
-    margin: 20px 0;
-    border-left-width: 5px;
+    padding: 0.5em 1em;
+    margin: 1em 0;
+    border-left-width: 0.25em;
     border-left-style: solid;
-    border-radius: 3px;
+    border-radius: 0.25em;
 }
-.callout h4 {
+.callout b {
     margin-top: 0;
-    margin-bottom: 5px;
+    margin-bottom: 0.5em;
 }
 .callout p:last-child {
     margin-bottom: 0;
 }
 .callout code {
-    border-radius: 3px;
+    border-radius: 0.25em;
 }
 .callout + .bs-callout {
-    margin-top: -5px;
+    margin-top: -0.25em;
 }
 
 .callout-quote {
     border-left-color: #777;
 }
-.callout-quote h4 {
+.callout-quote b {
     color: #777;
 }
 
 .callout-note {
     border-left-color: #428bca;
 }
-.callout-note h4 {
+.callout-note b {
     color: #428bca;
 }
 
 .callout-tip {
     border-left-color: #5cb85c;
 }
-.callout-tip h4 {
+.callout-tip b {
     color: #5cb85c;
 }
 
 .callout-caution {
     border-left-color: #d9534f;
 }
-.callout-caution h4 {
+.callout-caution b {
     color: #d9534f;
 }
 
 .callout-warning {
     border-left-color: #f0ad4e;
 }
-.callout-warning h4 {
+.callout-warning b {
     color: #f0ad4e;
 }
 
 .callout-important {
     border-left-color: #9f5bde;
 }
-.callout-important h4 {
+.callout-important b {
     color: #9f5bde;
 }
 
 .callout-question {
     border-left-color: #5bdebb;
 }
-.callout-question h4 {
+.callout-question b {
     color: #5bdebb;
 }
