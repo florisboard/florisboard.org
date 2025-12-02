@@ -12,7 +12,7 @@ First, open an existing theme extension or create a new one.
 This page gives the option to manage the theme extensions archive files.
 <img alt="Manage Archive files" src="/assets/images/themes/manage_archive_files.png" height="10px"/>
 
-By clicking on the ${.components.widgets.BootstrapIcon("plus-lg")} add a font/image to the archive.
+By clicking on the ${BootstrapIcon("plus-lg")} add a font/image to the archive.
 Renaming and deleting assets is possible by clicking on the filename in this list.
 
 ## Add a background image to a theme

@@ -20,8 +20,8 @@ Theme extensions are just an archive of smaller files. They can be shared and di
 FlorisBoard Addons is an official platform provided by the FlorisBoard maintainers, where we offer a platform
 for sharing and discovering user-generated themes.
 
-<!--TODO: This should be a note blockquote-->
-Note: This guide only covers the installation process of themes. For publishing instructions see the
+> [!NOTE]
+> This guide only covers the installation process of themes. For publishing instructions see the
 [publishing instructions](../Publishing.md).
 
 To install themes:
@@ -61,8 +61,8 @@ available on FlorisBoard Addons.
 ## Creating local themes
 
 Theme extensions can also be created and managed in runtime. To create a new local theme extension:
-1. Go to Theme > Go to Theme extensions and tap on ${.components.widgets.BootstrapIcon("plus-lg")} Create extension
-2. Tap on the ${.components.widgets.BootstrapIcon("plus-lg")} next to Bundled themes
+1. Go to Theme > Go to Theme extensions and tap on ${BootstrapIcon("plus-lg")} Create extension
+2. Tap on the ${BootstrapIcon("plus-lg")} next to Bundled themes
 3. Choose "From existing" (You could also create an empty stylesheet, but this is not recommended)
 4. Choose the stylesheet you want to copy and use as a base
 5. Tap on Create

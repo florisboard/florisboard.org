@@ -62,7 +62,12 @@ For theme extensions, you can additionally specify a themes array in the `extens
       "id": "<theme_id>",
       "label": "...",
       "authors": [ ... ],
-      "isNight": false
+      "isNight": false,
+      "materialYouFlags": {
+        "paletteStyle": "Neutral",
+        "contrastLevel": "Default",
+        "specVersion": "SPEC_2021"
+      }
     }
     ...
   ]

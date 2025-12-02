@@ -1,7 +1,10 @@
+@file:OptIn(ExperimentalStdlibApi::class)
+
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
 import com.varabyte.kobwebx.gradle.markdown.handlers.MarkdownHandlers
 import com.varabyte.kobwebx.gradle.markdown.ext.kobwebcall.KobwebCall
 import com.varabyte.kobweb.common.collect.Key
+import com.varabyte.kobweb.project.common.PackageUtils
 import com.varabyte.kobwebx.gradle.markdown.MarkdownBlock
 import com.varabyte.kobwebx.gradle.markdown.MarkdownEntry
 import com.varabyte.kobwebx.gradle.markdown.children
@@ -11,6 +14,7 @@ import kotlinx.html.script
 import org.commonmark.node.Code
 import org.commonmark.node.Node
 import org.commonmark.node.Text
+import kotlin.collections.getValue
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -56,11 +60,17 @@ kobweb {
                     rel = "stylesheet"
                     href = "/assets/docs.css"
                 }
+                link {
+                    rel = "stylesheet"
+                    href = "/assets/callout.css"
+                }
             }
         }
     }
     markdown {
         defaultLayout = ".components.layouts.DocsLayout"
+        imports.add(".components.widgets.BootstrapIcon")
+        imports.add(".components.widgets.callouts.*")
         handlers {
             a.set { link ->
                 "com.varabyte.kobweb.navigation.Anchor(\"${link.destination}\")"
@@ -69,7 +79,11 @@ kobweb {
             code.set { codeBlock ->
                 val language = "\"\"\"${codeBlock.info.escapeTripleQuotedText()}\"\"\""
                 val text = "\"\"\"${codeBlock.literal.escapeTripleQuotedText()}\"\"\""
-                "org.florisboard.docs.components.widgets.CodeBlock($language, $text)"
+                val codeBlockFunction = PackageUtils.resolvePackageShortcut(
+                    data.getValue(MarkdownHandlers.DataKeys.ProjectGroup),
+                    ".components.widgets.CodeBlock"
+                )
+                "$codeBlockFunction($language, $text)"
             }
 
             // Base idea: https://github.com/varabyte/kobweb-site/blob/79515be7b6b0db0b96e2072f33ded9fb616c5026/site/build.gradle.kts#L100-L113
@@ -83,7 +97,7 @@ kobweb {
                 fun nestedLiteral(node: Node): String = when (node) {
                     is Text -> node.literal
                     is Code -> node.literal
-                    else -> node.children().joinToString { nestedLiteral(it) }
+                    else -> node.children().joinToString("") { nestedLiteral(it) }
                 }
                 val text = nestedLiteral(heading)
                 heading.appendChild(KobwebCall(".components.widgets.HeadingAnchorLink(\"$anchor\")"))
@@ -105,9 +119,17 @@ kobweb {
                 if (tag.matches(TableOfContents.TagPattern)) {
                     val headingMetas = data[TableOfContents.HeadingMetasKey]
                     buildString {
-                        appendLine("org.florisboard.docs.components.widgets.TableOfContents {")
+                        val toc = PackageUtils.resolvePackageShortcut(
+                            data.getValue(MarkdownHandlers.DataKeys.ProjectGroup),
+                            ".components.widgets.TableOfContents"
+                        )
+                        val tocEntry = PackageUtils.resolvePackageShortcut(
+                            data.getValue(MarkdownHandlers.DataKeys.ProjectGroup),
+                            ".components.widgets.TableOfContentsEntry"
+                        )
+                        appendLine("$toc {")
                         headingMetas?.forEach { (anchor, text, level) ->
-                            append("org.florisboard.docs.components.widgets.TableOfContentsEntry(")
+                            append("$tocEntry(")
                             append("anchor = \"$anchor\", ")
                             append("text = \"$text\", ")
                             append("level = $level")
@@ -116,8 +138,36 @@ kobweb {
                         appendLine("}")
                     }
                 } else {
-                    baseHtmlHandler.invoke(this, html)
+                    baseHtmlHandler(this, html)
                 }
+            }
+            val baseBlockQuoteHandler = blockquote.get()
+            blockquote.set {blockQuote ->
+                val callout = blockQuote.firstChild.firstChild?.let { firstChild ->
+                    @Suppress("NAME_SHADOWING")
+                    val firstChild = firstChild as? Text ?: return@let null
+                    val regex = """\[!([^ ]+)( "(.*)")?( \{(.*)})?]""".toRegex() // [!TYPE "LABEL" {VARIANT}]
+                    val typeMatch = regex.find(firstChild.literal) ?: return@let null
+                    firstChild.literal = firstChild.literal.substringAfter(typeMatch.value)
+                    val typeId = typeMatch.groupValues[1]
+                    val isLabelSet = typeMatch.groupValues[2].isNotBlank()
+                    val label = typeMatch.groupValues[3].takeIf { isLabelSet }
+                    val calloutType = typeId.let {
+                        PackageUtils.resolvePackageShortcut(
+                            data.getValue(MarkdownHandlers.DataKeys.ProjectGroup),
+                            ".components.widgets.CalloutType.fromStringOrDefault(\"$it\")"
+                        )
+                    }
+                    val calloutFunction = PackageUtils.resolvePackageShortcut(
+                        data.getValue(MarkdownHandlers.DataKeys.ProjectGroup),
+                        ".components.widgets.Callout"
+                    )
+                    return@let when (label) {
+                        null -> "$calloutFunction(type = $calloutType, header = null)"
+                        else -> "$calloutFunction(type = $calloutType, header = \"$label\")"
+                    }
+                }
+                return@set callout ?: baseBlockQuoteHandler(this, blockQuote)
             }
         }
         process.set { process ->
