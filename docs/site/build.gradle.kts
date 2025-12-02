@@ -162,10 +162,9 @@ kobweb {
                         data.getValue(MarkdownHandlers.DataKeys.ProjectGroup),
                         ".components.widgets.Callout"
                     )
-                    return@let if (isLabelSet) {
-                        "$calloutFunction(type = $calloutType, header = \"$label\")"
-                    } else {
-                        "$calloutFunction(type = $calloutType, header = null)"
+                    return@let when (label) {
+                        null -> "$calloutFunction(type = $calloutType, header = null)"
+                        else -> "$calloutFunction(type = $calloutType, header = \"$label\")"
                     }
                 }
                 return@set callout ?: baseBlockQuoteHandler(this, blockQuote)
