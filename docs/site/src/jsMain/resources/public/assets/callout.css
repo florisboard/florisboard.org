@@ -1,0 +1,70 @@
+/*  Callouts inspired by https://codepen.io/superjaberwocky/pen/rLKxOa */
+.callout {
+    padding: 20px;
+    margin: 20px 0;
+    border-left-width: 5px;
+    border-left-style: solid;
+    border-radius: 3px;
+}
+.callout h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.callout p:last-child {
+    margin-bottom: 0;
+}
+.callout code {
+    border-radius: 3px;
+}
+.callout + .bs-callout {
+    margin-top: -5px;
+}
+
+.callout-quote {
+    border-left-color: #777;
+}
+.callout-quote h4 {
+    color: #777;
+}
+
+.callout-note {
+    border-left-color: #428bca;
+}
+.callout-note h4 {
+    color: #428bca;
+}
+
+.callout-tip {
+    border-left-color: #5cb85c;
+}
+.callout-tip h4 {
+    color: #5cb85c;
+}
+
+.callout-caution {
+    border-left-color: #d9534f;
+}
+.callout-caution h4 {
+    color: #d9534f;
+}
+
+.callout-warning {
+    border-left-color: #f0ad4e;
+}
+.callout-warning h4 {
+    color: #f0ad4e;
+}
+
+.callout-important {
+    border-left-color: #9f5bde;
+}
+.callout-important h4 {
+    color: #9f5bde;
+}
+
+.callout-question {
+    border-left-color: #5bdebb;
+}
+.callout-question h4 {
+    color: #5bdebb;
+}

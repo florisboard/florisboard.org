@@ -1,7 +1,10 @@
+@file:OptIn(ExperimentalStdlibApi::class)
+
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
 import com.varabyte.kobwebx.gradle.markdown.handlers.MarkdownHandlers
 import com.varabyte.kobwebx.gradle.markdown.ext.kobwebcall.KobwebCall
 import com.varabyte.kobweb.common.collect.Key
+import com.varabyte.kobweb.project.common.PackageUtils
 import com.varabyte.kobwebx.gradle.markdown.MarkdownBlock
 import com.varabyte.kobwebx.gradle.markdown.MarkdownEntry
 import com.varabyte.kobwebx.gradle.markdown.children
@@ -11,6 +14,7 @@ import kotlinx.html.script
 import org.commonmark.node.Code
 import org.commonmark.node.Node
 import org.commonmark.node.Text
+import kotlin.collections.getValue
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -56,11 +60,17 @@ kobweb {
                     rel = "stylesheet"
                     href = "/assets/docs.css"
                 }
+                link {
+                    rel = "stylesheet"
+                    href = "/assets/callout.css"
+                }
             }
         }
     }
     markdown {
         defaultLayout = ".components.layouts.DocsLayout"
+        imports.add(".components.widgets.BootstrapIcon")
+        imports.add(".components.widgets.callouts.*")
         handlers {
             a.set { link ->
                 "com.varabyte.kobweb.navigation.Anchor(\"${link.destination}\")"
@@ -116,8 +126,33 @@ kobweb {
                         appendLine("}")
                     }
                 } else {
-                    baseHtmlHandler.invoke(this, html)
+                    baseHtmlHandler(this, html)
                 }
+            }
+            val baseBlockQuoteHandler = blockquote.get()
+            blockquote.set {blockQuote ->
+                val callout = blockQuote.firstChild.firstChild?.let { firstChild ->
+                    @Suppress("NAME_SHADOWING")
+                    val firstChild = firstChild as? Text ?: return@let null
+                    val regex = """\[!([^ ]+)( "(.*)")?( \{(.*)})?]""".toRegex() // [!TYPE "LABEL" {VARIANT}]
+                    val typeMatch = regex.find(firstChild.literal) ?: return@let null
+                    firstChild.literal = firstChild.literal.substringAfter(typeMatch.value)
+                    val typeId = typeMatch.groupValues[1]
+                    val isLabelSet = typeMatch.groupValues[2].isNotBlank()
+                    val label = typeMatch.groupValues[3].takeIf { isLabelSet }
+                    val calloutType = typeId.let {
+                        PackageUtils.resolvePackageShortcut(
+                            data.getValue(MarkdownHandlers.DataKeys.ProjectGroup),
+                            ".components.widgets.CalloutType.fromStringOrDefault(\"$it\")"
+                        )
+                    }
+                    return@let if (isLabelSet) {
+                        "org.florisboard.docs.components.widgets.Callout(type = $calloutType, header = \"$label\")"
+                    } else {
+                        "org.florisboard.docs.components.widgets.Callout(type = $calloutType, header = null)"
+                    }
+                }
+                return@set callout ?: baseBlockQuoteHandler(this, blockQuote)
             }
         }
         process.set { process ->
