@@ -79,7 +79,11 @@ kobweb {
             code.set { codeBlock ->
                 val language = "\"\"\"${codeBlock.info.escapeTripleQuotedText()}\"\"\""
                 val text = "\"\"\"${codeBlock.literal.escapeTripleQuotedText()}\"\"\""
-                "org.florisboard.docs.components.widgets.CodeBlock($language, $text)"
+                val codeBlockFunction = PackageUtils.resolvePackageShortcut(
+                    data.getValue(MarkdownHandlers.DataKeys.ProjectGroup),
+                    ".components.widgets.CodeBlock"
+                )
+                "$codeBlockFunction($language, $text)"
             }
 
             // Base idea: https://github.com/varabyte/kobweb-site/blob/79515be7b6b0db0b96e2072f33ded9fb616c5026/site/build.gradle.kts#L100-L113
@@ -115,9 +119,17 @@ kobweb {
                 if (tag.matches(TableOfContents.TagPattern)) {
                     val headingMetas = data[TableOfContents.HeadingMetasKey]
                     buildString {
-                        appendLine("org.florisboard.docs.components.widgets.TableOfContents {")
+                        val toc = PackageUtils.resolvePackageShortcut(
+                            data.getValue(MarkdownHandlers.DataKeys.ProjectGroup),
+                            ".components.widgets.TableOfContents"
+                        )
+                        val tocEntry = PackageUtils.resolvePackageShortcut(
+                            data.getValue(MarkdownHandlers.DataKeys.ProjectGroup),
+                            ".components.widgets.TableOfContentsEntry"
+                        )
+                        appendLine("$toc {")
                         headingMetas?.forEach { (anchor, text, level) ->
-                            append("org.florisboard.docs.components.widgets.TableOfContentsEntry(")
+                            append("$tocEntry(")
                             append("anchor = \"$anchor\", ")
                             append("text = \"$text\", ")
                             append("level = $level")
@@ -146,10 +158,14 @@ kobweb {
                             ".components.widgets.CalloutType.fromStringOrDefault(\"$it\")"
                         )
                     }
+                    val calloutFunction = PackageUtils.resolvePackageShortcut(
+                        data.getValue(MarkdownHandlers.DataKeys.ProjectGroup),
+                        ".components.widgets.Callout"
+                    )
                     return@let if (isLabelSet) {
-                        "org.florisboard.docs.components.widgets.Callout(type = $calloutType, header = \"$label\")"
+                        "$calloutFunction(type = $calloutType, header = \"$label\")"
                     } else {
-                        "org.florisboard.docs.components.widgets.Callout(type = $calloutType, header = null)"
+                        "$calloutFunction(type = $calloutType, header = null)"
                     }
                 }
                 return@set callout ?: baseBlockQuoteHandler(this, blockQuote)
