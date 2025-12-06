@@ -27,18 +27,6 @@ Snygg variables can be referenced in the rest of the stylesheet.
 
 ### Rules
 
-Rules are the snygg way to describe your stylesheet.
-Rules inherit from the parent unless the value is overwriten.
-
-#### Font (``@font `<font-name>` ``)
-
-The @font rule makes fonts.
-
-> [!TIP]
-> See also [Custom fonts](/themes/fonts#custom-fonts)
-
-#### Root
-
-#### Window
+For the list of available rules see [rules](Rules.md)
 
 <table-of-contents />
