@@ -15,6 +15,8 @@ been upgraded to the new Snygg version, thus you will probably want to update yo
 This documentation provides some guides on how to use the new theme editor, and provides detailed information
 regarding the stylesheet and its properties.
 
+
+
 **Note:** This documentation section is WIP and will be updated in the following weeks.
 
 [addons_url]: https://beta.addons.florisboard.org/

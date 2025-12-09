@@ -26,7 +26,32 @@ These can be used by assigning a generic font family value to the `font-family` 
 
 ### Custom fonts
 
-TODO: document :D
+Custom fonts are defined via one ore multiple font source sets.
+Each font source set can use a different source file.
+
+> [!TIP]
+> Before custom fonts can be used, they have to be [imported](assets#Managing-archive-files) to the theme extension. 
+
+#### Custom font source set
+
+The source set defining the font.
+
+Possible properties:
+
+* [Font style](fonts#font-style)
+* [Font weight](fonts#font-weight)
+* [Source](fonts#source)
+
+##### Source
+
+The URI reference which font asset should be used
+
+- Property name: `source`
+
+| Property value    | Description                                               |
+| ----------------- | --------------------------------------------------------- |
+| ``uri(`<path>`)`` | Defines the URI which should be resolved to load the font |
+
 
 ## Font size
 

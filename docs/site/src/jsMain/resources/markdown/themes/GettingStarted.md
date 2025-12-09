@@ -5,7 +5,7 @@ menu_position: 1
 
 Customization of the FlorisBoard UI is done via themes, which describe all rules applied to the UI to customize your
 keyboard to your liking. A theme may require multiple files (e.g. custom images), thus they are bundled in theme
-extension archives. Whenever themes are distributed, they are thus distributed in form of an FlorisBoard theme 
+extension archives. Whenever themes are distributed, they are thus distributed in form of a FlorisBoard theme 
 extensions.
 
 This page describes the basics on how to install theme extensions, as well as how to create new theme extensions from

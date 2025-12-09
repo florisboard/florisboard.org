@@ -4,7 +4,7 @@ applies_to: v0.5 or newer
 ---
 
 FlorisBoard supports custom fonts and images in themes.
-However before they can be used in the theme extension they need to be added as assets to the extension.
+However, before they can be used in the theme extension they need to be added as assets to the extension.
 
 ## Managing archive files
 
@@ -24,6 +24,6 @@ Click on the find file icon, to select the image file.
 
 ## Add a custom font to a theme
 
-Follow the steps in the [fonts](fonts#custom-fonts) section.
+Add a [font rule](editor-basics#font-font-font-name) to the theme extension.
 
 <table-of-contents />
