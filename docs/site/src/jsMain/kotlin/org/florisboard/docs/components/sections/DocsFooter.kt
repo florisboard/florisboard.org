@@ -16,7 +16,7 @@ fun DocsFooter() {
     Footer(attrs = { classes("container-lg") }) {
         P {
             Span {
-                Text("© 2020-2025 ")
+                Text("© 2020-2026 ")
             }
             Anchor(href = "https://github.com/florisboard/florisboard/graphs/contributors") {
                 Text("The FlorisBoard Contributors")

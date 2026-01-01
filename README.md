@@ -19,7 +19,7 @@ Monorepo for multiple FlorisBoard web pages.
 Unless otherwise [noted](#exceptions), this repository and all its files are licensed under the [Apache 2.0 license](LICENSE):
 
 ```
-Copyright 2022-2025 Patrick Goldinger and Lars Mühlbauer
+Copyright 2022-2026 Patrick Goldinger and Lars Mühlbauer
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
