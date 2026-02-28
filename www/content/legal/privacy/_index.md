@@ -32,7 +32,7 @@ No. Any personal data that is persisted is stored locally and **never** leaves y
 
 ## Other
 
-For information about the list of permissions requested by FlorisBoard, please read [this](https://github.com/florisboard/florisboard/wiki/List-of-permissions-FlorisBoard-requests) document.
+For information about the list of permissions requested by FlorisBoard, please refer to [this](https://docs.florisboard.org/permissions) documentation page.
 
 ### Updates to this privacy policy
 
