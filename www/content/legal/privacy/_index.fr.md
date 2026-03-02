@@ -3,7 +3,7 @@ title = "Politique de confidentialité"
 [extra]
 go_to_top = false
 +++
-_Dernière modification : 30 juillet 2025 ([Historique du document](https://github.com/florisboard/florisboard.github.io/commits/main/content/legal/privacy/_index.md))_
+_Dernière modification : 2 mars 2026 ([Historique du document](https://github.com/florisboard/florisboard.github.io/commits/main/content/legal/privacy/_index.md))_
 
 FlorisBoard (le « Projet ») est un clavier open-source et respectueux de la vie privée, développé et maintenu principalement par Patrick Goldinger ([@patrickgold](https://github.com/patrickgold)) et Lars Mühlbauer ([@lm41](https://github.com/lm41)), avec le support formidable de la communité du Projet.
 Cette politique de confidentialité existe pour vous donner une meilleure compréhension des données personnelles minimum qui doivent être lues et/ou stockées localement pour vous fournir un clavier fonctionnel.
@@ -40,7 +40,7 @@ Non. Toutes les données personnelles stockées le sont localement, et ne quitte
 
 ## Autre
 
-Pour plus d’information à propos des permissions requises par FlorisBoard, merci de lire [ce document (en anglais)](https://github.com/florisboard/florisboard/wiki/List-of-permissions-FlorisBoard-requests).
+Pour plus d’information à propos des permissions requises par FlorisBoard, merci de lire [ce document (en anglais)](https://docs.florisboard.org/permissions).
 
 ### Mise à jour de cette politique de confidentialité
 
